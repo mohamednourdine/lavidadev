@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+  web:
+    image: buzzingpixel/nginx:latest
+    container_name: nginx-lavidadev
+    environment:
+      HOSTNAME: nginx-lavidadev
+    ports:
+      - "${DOCKER_NGINX_PORT}:80"
+    volumes:
+      - ${DOCKER_NGINX_CONF_FILE}:/etc/nginx/conf.d/site.conf
+      - ./webapi:/app
+    networks:
+      common:
+        aliases:
+          - ${SERVER_NAME_ALIAS}
+  php:
+    image: buzzingpixel/php7.1:latest
+    container_name: php-lavidadev
+    environment:
+      HOSTNAME: php-lavidadev
+    volumes:
+      - ./serverConfig/php/php-custom-config.ini:/usr/local/etc/php/conf.d/php-custom-config.ini
+      - ${DOCKER_PHP_ENV_INI_FILE}:/usr/local/etc/php/conf.d/php-env-config.ini
+      - ./serverConfig/php/fpm-www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./webapi:/app
+    networks:
+      common:
+  db:
+    image: mysql:5.7
+    container_name: db-lavidadev
+    restart: always
+    environment:
+      HOSTNAME: db-duboseweb
+      MYSQL_ROOT_PASSWORD: ${DOCKER_MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    user: "1000:50"
+    volumes:
+      - ./webapi/db:/var/lib/mysql
+    ports:
+      - "${DOCKER_DB_PORT}:3306"
+    networks:
+      common:
+  node:
+    image: node
+    container_name: node-lavidadev
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./webapp:/home/node/app
+    ports:
+      - "3000:8080"
+    command: "npm run serve"
+    networks:
+      common:
+
+volumes:
+  vendor-data:
+  cache-data:
+  db-data:
+  public-cache:
+
+networks:
+  common:
