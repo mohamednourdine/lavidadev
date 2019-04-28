@@ -44,20 +44,20 @@ services:
       - "${DOCKER_DB_PORT}:3306"
     networks:
       common:
-  node:
-    image: node
-    container_name: node-lavidadev
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./webapp:/home/node/app
-    ports:
-      - "3000:8080"
-    command: "npm run serve"
-    networks:
-      common:
+#  node:
+#    image: node
+#    container_name: node-lavidadev
+#    user: "node"
+#    working_dir: /home/node/app
+#    environment:
+#      - NODE_ENV=production
+#    volumes:
+#      - ./webapp:/home/node/app
+#    ports:
+#      - "3000:8080"
+#    command: ""
+#    networks:
+#      common:
 
 volumes:
   vendor-data:
