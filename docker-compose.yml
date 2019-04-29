@@ -45,19 +45,29 @@ services:
     networks:
       common:
 #  node:
-#    image: node
+#    image: node:11.12.0
 #    container_name: node-lavidadev
-#    user: "node"
 #    working_dir: /home/node/app
-#    environment:
-#      - NODE_ENV=production
+#
 #    volumes:
 #      - ./webapp:/home/node/app
 #    ports:
 #      - "3000:8080"
-#    command: ""
+#    command: "tail -f /dev/null"
 #    networks:
 #      common:
+
+  node:
+    image: node:11.12.0
+    container_name: node-lavidadev
+    working_dir: /home/node/app
+    ports:
+      - 8080:8080
+    volumes:
+      - ./webapp:/home/node/app
+    command: "tail -f /dev/null"
+    networks:
+      common:
 
 volumes:
   vendor-data:
