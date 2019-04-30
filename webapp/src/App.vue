@@ -13,13 +13,19 @@
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
         <router-link to="/navigation">Navigation</router-link>
-
       </div>
     </nav>
     <router-view/>
   </div>
 </template>
-
+<script>
+export default {
+  props: {
+    msg: String,
+    loading: Boolean
+  }
+}
+</script>
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500,500i|Oswald:400,700');
 body {
@@ -55,7 +61,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  height: 100vh;
+  color: #FFF;
 }
 #nav {
   padding: 10px;
@@ -66,10 +73,21 @@ body {
   border-bottom: 5px solid white;
   max-height: 125px;
   a {
-    font-weight: bold;
-    color: #2c3e50;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: white;
+    text-align: left;
+    font-size: 45px;
+    line-height: 45px;
     &.router-link-exact-active {
-      color: #42b983;
+      color: #464544;
+    }
+    &:hover {
+      color: #2e2d2d;
     }
   }
   .navLogo {
@@ -90,6 +108,7 @@ body {
     line-height: 30px;
   }
   .titleBottom {
+    margin-left: -3px;
     margin-top: -10px;
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
@@ -101,6 +120,12 @@ body {
   }
   .navLinks {
     width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
   }
 }
 </style>
