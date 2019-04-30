@@ -7,20 +7,22 @@
       <div class="bubbles" id="b4">&nbsp;</div>
       <div class="bubbles" id="b5">&nbsp;</div>
     </div>
-    <ul v-for="entry in info">
-      <li> {{ entry.id }} </li>
-      <li v-html="entry.blog_content">  </li>
-      <li> {{ entry.blog_image }} </li>
-      <li> {{ entry.blog_meta_description }} </li>
-      <li> {{ entry.blog_tags }} </li>
-      <li> {{ entry.created_by }} </li>
-      <li> {{ entry.created_on }} </li>
-      <li> {{ entry.modified_by }} </li>
-      <li> {{ entry.modified_on }} </li>
-      <li> {{ entry.sort }} </li>
-      <li> {{ entry.status }} </li>
-      <li> {{ entry.title }} </li>
-    </ul>
+    <section>
+      <ul v-for="entry in info">
+        <li v-bind="entry"> {{ entry.id }} </li>
+        <li v-bind="entry" v-html="entry.blog_content">  </li>
+        <li v-bind="entry"> {{ entry.blog_image }} </li>
+        <li v-bind="entry"> {{ entry.blog_meta_description }} </li>
+        <li v-bind="entry"> {{ entry.blog_tags }} </li>
+        <li v-bind="entry"> {{ entry.created_by }} </li>
+        <li v-bind="entry"> {{ entry.created_on }} </li>
+        <li v-bind="entry"> {{ entry.modified_by }} </li>
+        <li v-bind="entry"> {{ entry.modified_on }} </li>
+        <li v-bind="entry"> {{ entry.sort }} </li>
+        <li v-bind="entry"> {{ entry.status }} </li>
+        <li v-bind="entry"> {{ entry.title }} </li>
+      </ul>
+    </section>
   </div>
 </template>
 
@@ -68,10 +70,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .wrapper {
-  position: relative;
+  max-height: calc(100vh - 120px);
   overflow: auto;
-  max-height: calc(100vh - 125px);
-  min-width: 100vw;
+  width: 100vw;
 }
 .bubbles-wrapper {
   background-color: white;
