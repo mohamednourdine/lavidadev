@@ -12,7 +12,7 @@
       <div class="navLinks">
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
-        <router-link to="/navigation">Navigation</router-link>
+        <router-link to="/blog">Blog</router-link>
       </div>
     </nav>
     <router-view/>
