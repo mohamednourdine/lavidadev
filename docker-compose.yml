@@ -52,7 +52,7 @@ services:
       - 8080:8080
     volumes:
       - ./webapp:/home/node/app
-    command: bash -c "npm run serve && tail -f /dev/null"
+    command: bash -c "npm start && tail -f /dev/null"
     networks:
       common:
 
